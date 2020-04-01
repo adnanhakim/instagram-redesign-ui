@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_redesign_ui/models/post_model.dart';
+import 'package:instagram_redesign_ui/screens/view_post_screen.dart';
 
 class FeedScreen extends StatefulWidget {
   @override
@@ -60,22 +61,33 @@ class _FeedScreenState extends State<FeedScreen> {
                   onPressed: () => print('More'),
                 ),
               ),
-              Container(
-                margin: EdgeInsets.all(10.0),
-                width: double.infinity,
-                height: 400.0,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25.0),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black45,
-                      offset: Offset(0.0, 8.0),
-                      blurRadius: 8.0,
+              InkWell(
+                onDoubleTap: () => print('Like post'),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => ViewPostScreen(post: posts[index]),
                     ),
-                  ],
-                  image: DecorationImage(
-                    image: AssetImage(posts[index].imageUrl),
-                    fit: BoxFit.fitWidth,
+                  );
+                },
+                child: Container(
+                  margin: EdgeInsets.all(10.0),
+                  width: double.infinity,
+                  height: 400.0,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(25.0),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black45,
+                        offset: Offset(0.0, 8.0),
+                        blurRadius: 8.0,
+                      ),
+                    ],
+                    image: DecorationImage(
+                      image: AssetImage(posts[index].imageUrl),
+                      fit: BoxFit.fitWidth,
+                    ),
                   ),
                 ),
               ),
@@ -105,7 +117,15 @@ class _FeedScreenState extends State<FeedScreen> {
                               icon: Icon(Icons.chat),
                               color: Colors.black,
                               iconSize: 30.0,
-                              onPressed: () => print('Comment post'),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) =>
+                                        ViewPostScreen(post: posts[index]),
+                                  ),
+                                );
+                              },
                             ),
                             Text(
                               '2,515',
@@ -231,6 +251,68 @@ class _FeedScreenState extends State<FeedScreen> {
                   ],
                 ),
               ),
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: ClipRRect(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20.0),
+          topRight: Radius.circular(20.0),
+        ),
+        child: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.dashboard,
+                size: 30.0,
+                color: Colors.black,
+              ),
+              title: SizedBox.shrink(),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.search,
+                size: 30.0,
+                color: Colors.grey,
+              ),
+              title: SizedBox.shrink(),
+            ),
+            BottomNavigationBarItem(
+              icon: Padding(
+                padding: EdgeInsets.all(5.0),
+                child: FlatButton(
+                  padding: EdgeInsets.symmetric(vertical: 5.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  color: Color(0xFF23B66F),
+                  onPressed: () => print('Upload Photo'),
+                  child: Icon(
+                    Icons.add,
+                    size: 35.0,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              title: SizedBox.shrink(),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.favorite_border,
+                size: 30.0,
+                color: Colors.grey,
+              ),
+              title: SizedBox.shrink(),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.person_outline,
+                size: 30.0,
+                color: Colors.grey,
+              ),
+              title: SizedBox.shrink(),
             ),
           ],
         ),
