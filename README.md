@@ -2,7 +2,7 @@
 
 ## About
 
-A flutter UI replication project for Instagram based on [this dribbble project](https://dribbble.com/shots/6349659-Instagram-redesign-concept)
+A flutter UI redesign project for Instagram based on [this dribbble project](https://dribbble.com/shots/6349659-Instagram-redesign-concept)
 
 ## Technology Stack
 
